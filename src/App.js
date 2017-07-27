@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './spectre.min.css';
+import Register from './Register.js'
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <Router>
+        <div>
+        <nav className="navbar">
+          <section className="navbar-section">
+            <Link className="navbar-brand mr-10" to="/">Gym</Link>
+            
+          </section>
+          <section className="navbar-section">
+            <Link className="btn btn-link" to="/register">Register</Link>
+          </section>
+        </nav>
+        <div>
+          <Route path="/register" component={Register}/>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
