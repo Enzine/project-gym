@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import './spectre.min.css';
-import Register from './Register.js'
+import Register from './Register.js';
+import Login from './Login.js';
 
 import {
   BrowserRouter as Router,
@@ -17,13 +18,14 @@ class App extends Component {
         <nav className="navbar">
           <section className="navbar-section">
             <Link className="navbar-brand mr-10" to="/">Gym</Link>
-            
           </section>
           <section className="navbar-section">
+            <Link className="btn btn-link" to="/login">Login</Link>
             <Link className="btn btn-link" to="/register">Register</Link>
           </section>
         </nav>
         <div>
+          <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
         </div>
         </div>

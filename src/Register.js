@@ -17,7 +17,6 @@ export default class Register extends Component {
     let passwordConfirm = this.refs.passwordConfirm.value;
 
     register(name, password, passwordConfirm);
-    
   }
 
   render() {
