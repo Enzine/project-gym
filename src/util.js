@@ -24,20 +24,19 @@ export const login = (name, password) => {
     }
   };
 
-  axios.post(SERVER_URL + '/login', requestObject)
-    .then((response) => {
-      debugger;
-      let token = response.token;
-      localStorage.setItem("token", token);
+  return axios.post(SERVER_URL + '/login', requestObject);
+}
 
-      return true;
-
-    })
-    .catch((error) => {
-      return error;
-    });
+export const logout = () => {
+  localStorage.clear();
 }
 
 export const loggedIn = () => {
-  return localStorage.getItem("token") !== undefined;
+  return localStorage.getItem("name");
+}
+
+
+export const saveData = (name, token) => {
+  localStorage.setItem("name", name);
+  localStorage.setItem("token", token);
 }
