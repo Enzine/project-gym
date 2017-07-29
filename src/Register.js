@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { register } from './util.js';
+import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
 
@@ -7,6 +8,10 @@ export default class Register extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      errors: undefined,
+      registered: false
+    }
   }
 
   handleSubmit(e) {
@@ -16,13 +21,35 @@ export default class Register extends Component {
     let password = this.refs.password.value;
     let passwordConfirm = this.refs.passwordConfirm.value;
 
-    register(name, password, passwordConfirm);
+    let registered = register(name, password, passwordConfirm);
+    
+    registered.then((response) => {
+      this.setState({
+        registered: true
+      })
+    })
+    .catch((error) => {
+      let errorDescription = error.response.data.errors;
+      this.setState({
+        errors: errorDescription
+      })
+    });
   }
 
   render() {
     return (
       <div className="container grid-480">
         <h1>Register</h1>
+        { this.state.errors && 
+          <div className="errors">
+            <p> An error occured. Please try again </p>
+          </div>
+        }
+
+        { this.state.registered &&
+          <Redirect to="/" push />
+        }
+
         <div className="columns">
           <div className="column column-centered">
           <form onSubmit={this.handleSubmit} >

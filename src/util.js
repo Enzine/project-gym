@@ -12,13 +12,7 @@ export const register = (name, password, passwordConfirm) => {
     }
   };
 
-  axios.post(SERVER_URL + '/register', requestObject)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  return axios.post(SERVER_URL + '/register', requestObject);
 }
 
 export const login = (name, password) => {
@@ -32,17 +26,18 @@ export const login = (name, password) => {
 
   axios.post(SERVER_URL + '/login', requestObject)
     .then((response) => {
+      debugger;
       let token = response.token;
-
       localStorage.setItem("token", token);
 
+      return true;
 
     })
     .catch((error) => {
-
+      return error;
     });
 }
 
-export const logged_in = () => {
-  return localStorage.getItem("token") == undefined;
+export const loggedIn = () => {
+  return localStorage.getItem("token") !== undefined;
 }
