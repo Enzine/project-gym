@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Logout from './Logout.js';
 
 export default class SideBar extends Component {
@@ -15,8 +15,8 @@ export default class SideBar extends Component {
     }
     return (
       <section className="navbar-section">
-        <Link className="btn btn-link" to="/login">Login</Link>
-        <Link className="btn btn-link" to="/register">Register</Link>
+        <NavLink className="btn btn-link" to="/login">Login</NavLink>
+        <NavLink className="btn btn-link" to="/register">Register</NavLink>
       </section>
     );
   }
